@@ -3,7 +3,7 @@ import api from "./services/api";
 import './App.css';
 
 export default function App() {
-    const [username, setUsername] = useState('thaispll');
+    const [username, setUsername] = useState('Dominatoxz');
     const[user, setUser] = useState(null);
     const[repos, setRepos] = useState([]);
     const[loading, setLoading] = useState(true);
@@ -31,8 +31,8 @@ export default function App() {
         } finally{
           setLoading(false);
         }
-        loadData();
       }
+      loadData();
     }, []);
 
     if(loading){
@@ -60,9 +60,9 @@ export default function App() {
             <img src={user.avatar_url} alt={user.name} className="avatar"/>
             <div className="user-info">
               <h1>{user.name || user.login}</h1>
-              <p>{user.bio} || "Sem bio disponível"</p>
+              <p>{user.bio || "Sem bio disponível"}</p>
               <div className="status">
-                <span><strong>{user.followers}</strong> seguidores</span>
+                <span><strong>{user.followers}</strong> seguidores </span>
                 <span><strong>{user.following}</strong> Seguindo</span>
               </div>
               <a href={user.html_url} target="_blank" rel="noreferrer" className="github-link">
@@ -70,6 +70,27 @@ export default function App() {
               </a>
             </div>
           </header>
+
+          <main className="repos-section">
+            <h2>Repositórios recentes</h2>
+            <div className="repos-grid"> 
+              {repos.map(repo => (
+                <div key={repo.id} className="repo-card">  
+                  <h3>{repo.name}</h3>
+                  <p>{repo.description || "Sem descrição."}</p>
+                  <div className="repo-footer">
+                    <span>{repo.stargazers_count}</span>
+                    <span>{repo.forks_count}</span>
+                    <a href={repo.html_url} target="_blank" rel="noreferrer">
+                      Acessar 
+                    </a>
+                  </div>
+                </div>
+                
+              ))}
+            </div>
+
+          </main>
       </div>
     );
 }
