@@ -21,7 +21,7 @@ export default function App() {
           const userResponse = await api.get(`/users/${userToSearch}`); //API Responde
           setUser(userResponse.data); //Extrai os dados da API
 
-          const reposResponse = await api.get(`/users/${userToSearch}/repos?per_page=6&sort=updated`); 
+          const reposResponse = await api.get(`/users/${userToSearch}/repos?per_page=10&sort=updated`); 
           setRepos(reposResponse.data); 
 
         } catch(error){
