@@ -3,7 +3,7 @@ import api from "./services/api";
 import './App.css';
 
 export default function App() {
-    const [username, setUsername] = useState('Dominatoxz');
+    const [username] = useState('Dominatoxz');
     const[user, setUser] = useState(null);
     const[repos, setRepos] = useState([]);
     const[loading, setLoading] = useState(true);
@@ -33,7 +33,7 @@ export default function App() {
         }
       }
       loadData();
-    }, []);
+    }, [username]);
 
     if(loading){
       return (
@@ -79,8 +79,8 @@ export default function App() {
                   <h3>{repo.name}</h3>
                   <p>{repo.description || "Sem descrição."}</p>
                   <div className="repo-footer">
-                    <span> {repo.stargazers_count} </span>
-                    <span> {repo.forks_count} </span>
+                    <span> {repo.stargazers_count} Stars</span>
+                    <span> {repo.forks_count} Forks</span>
                     <a href={repo.html_url} target="_blank" rel="noreferrer">
                       Acessar 
                     </a>
